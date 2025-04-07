@@ -1,0 +1,121 @@
+.App {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .cv-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .form-section,
+  .preview-section {
+    flex: 1;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    height: 80px;
+  }
+  
+  .template-selector {
+    margin-bottom: 20px;
+  }
+  
+  .template-selector button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  .template-selector button.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  .cv-preview {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #fff;
+    width: 190mm;
+    min-height: 277mm;
+  }
+  
+  /* Modern Template */
+  .cv-preview.modern {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .cv-preview.modern h3 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    color: #007bff;
+  }
+  
+  .cv-preview.modern h4 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+  }
+  
+  .cv-preview.modern p {
+    margin: 0 0 10px;
+    line-height: 1.5;
+  }
+  
+  /* Classic Template */
+  .cv-preview.classic {
+    font-family: "Times New Roman", serif;
+    color: #000;
+    border: 2px solid #000;
+  }
+  
+  .cv-preview.classic h3 {
+    margin: 0 0 10px;
+    font-size: 26px;
+    text-align: center;
+    text-decoration: underline;
+  }
+  
+  .cv-preview.classic h4 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .cv-preview.classic p {
+    margin: 0 0 10px;
+    line-height: 1.6;
+  }
+  
+  .download-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .download-btn:hover {
+    background: #218838;
+  }
