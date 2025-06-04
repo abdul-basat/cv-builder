@@ -176,20 +176,56 @@ function App() {
   const templates = ["modern", "classic"];
 
   const downloadPDF = () => {
-    const preview = document.getElementById("cv-preview");
-    html2canvas(preview, { scale: 2 }).then((canvas) => {
+    const previewElement = document.getElementById("cv-preview");
+    if (!previewElement) {
+      console.error("CV preview element not found!");
+      alert("Error: CV preview element not found. Cannot download PDF.");
+      return;
+    }
+
+    // Optional: Add a loading indicator here if PDF generation is slow
+    // E.g., set a state like `setIsGeneratingPdf(true)`
+
+    html2canvas(previewElement, {
+      scale: 2,
+      logging: false, // Keep false unless debugging
+      useCORS: true, // Good to have if images from URLs might be used
+      onclone: (documentClone) => {
+          // Modify the cloned document before capture
+          const clonedPreview = documentClone.getElementById("cv-preview");
+          if (clonedPreview) {
+              clonedPreview.style.boxShadow = 'none'; // Remove box-shadow for cleaner PDF
+              // Potentially hide .block-controls if they are part of the capture
+              const blockControls = clonedPreview.querySelectorAll('.block-controls');
+              blockControls.forEach(controls => controls.style.display = 'none');
+          }
+      }
+    }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const width = imgWidth * ratio;
-      const height = imgHeight * ratio;
 
-      pdf.addImage(imgData, "PNG", 0, 0, width, height);
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+
+      // Scale image to fit A4, maintaining aspect ratio
+      let ratio = Math.min(pdfWidth / canvasWidth, pdfHeight / canvasHeight);
+      let imgWidth = canvasWidth * ratio;
+      let imgHeight = canvasHeight * ratio;
+
+      // Center the image on the PDF page
+      const xOffset = (pdfWidth - imgWidth) / 2;
+      const yOffset = (pdfHeight - imgHeight) / 2;
+
+      pdf.addImage(imgData, "PNG", xOffset, yOffset, imgWidth, imgHeight);
       pdf.save("cv.pdf");
+    }).catch(error => {
+      console.error("Error generating PDF:", error);
+      alert("An error occurred while generating the PDF. Please try again.");
+    }).finally(() => {
+      // Optional: Remove loading indicator here
+      // E.g., setIsGeneratingPdf(false)
     });
   };
 
