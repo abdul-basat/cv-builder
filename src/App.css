@@ -1,121 +1,383 @@
+/* Global Styles & Typography */
 .App {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
+  text-align: center;
+}
+
+.App h1 {
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  margin: 5px; /* General margin for buttons */
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px; /* Consistent margin */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Important for width 100% */
+  font-size: 1em;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* CV Container Layout */
+.cv-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px; /* Increased gap */
+  align-items: flex-start;
+}
+
+.form-section {
+  flex: 1;
+  padding: 25px; /* Increased padding */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  text-align: left;
+}
+
+.preview-section {
+  flex: 1;
+  padding: 25px; /* Increased padding */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px); /* Max height for sticky preview */
+  overflow-y: auto; /* Allow scrolling for preview if content is too long */
+}
+
+/* Form Specifics */
+.form-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px; /* Added margin */
+  color: #34495e;
+  border-bottom: 2px solid #ecf0f1; /* Lighter border */
+  padding-bottom: 15px; /* Increased padding */
+}
+
+.form-block {
+  padding: 20px; /* Increased padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 6px; /* Slightly more rounded */
+  margin-bottom: 25px; /* Increased margin */
+  background-color: #fdfdfd; /* Slightly off-white */
+}
+
+.form-block h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #2c3e50; /* Darker heading for contrast */
+}
+
+.form-block label {
+  display: block;
+  margin-bottom: 8px; /* Adjusted margin */
+  font-weight: 600; /* Slightly bolder */
+  color: #495057; /* Softer black */
+}
+
+.add-block-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 25px; /* Increased margin */
+  padding: 15px; /* Increased padding */
+  background-color: #e9ecef;
+  border-radius: 6px;
+}
+.add-block-section select {
+  flex-grow: 1;
+  margin-right: 0; /* Remove specific margin if gap is used */
+}
+.add-block-section button {
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+
+/* CV Preview Styling */
+.cv-preview {
+  border: 1px solid #d1d1d1; /* Slightly softer border */
+  padding: 25mm; /* Standard A4 padding */
+  min-height: 297mm;
+  width: 210mm;
+  min-width: 210mm;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15); /* More pronounced shadow for preview */
+  text-align: left;
+}
+
+.cv-block {
+  margin-bottom: 15px;
+  padding: 10px 0; /* Vertical padding only */
+  border-bottom: 1px solid #f0f0f0; /* Lighter separator */
+  position: relative;
+  padding-top: 35px; /* Ensure space for controls, adjust as needed */
+}
+.cv-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0; /* No margin for the last block */
+}
+
+.cv-block h3, .cv-block h4, .cv-block p, .cv-block span { /* Added span for inline edit targets */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.cv-block h3:hover, .cv-block h4:hover, .cv-block p:hover, .cv-block span:hover {
+   background-color: #f8f9fa; /* Subtle hover background */
+   outline: 1px dashed #a5d6a7; /* Light green dashed outline on hover */
+}
+
+.cv-block input[type="text"],
+.cv-block input[type="email"],
+.cv-block input[type="tel"],
+.cv-block input[type="url"],
+.cv-block textarea {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 4px 6px; /* Adjusted padding */
+  border: 1px solid #3498db;
+  width: calc(100% - 12px); /* Adjust width considering padding */
+  box-sizing: border-box;
+  border-radius: 3px;
+  margin: 2px 0; /* Add small margin for inputs */
+}
+.cv-block textarea {
+  min-height: 70px; /* Slightly taller */
+}
+
+/* Block Controls Styling */
+.block-controls {
+  position: absolute;
+  top: 8px; /* Adjusted position */
+  right: 8px; /* Adjusted position */
+  display: flex;
+  gap: 6px; /* Adjusted gap */
+  background-color: rgba(240, 240, 240, 0.9); /* Slightly more opaque */
+  padding: 4px; /* Adjusted padding */
+  border-radius: 5px; /* Consistent rounding */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtle shadow for controls */
+}
+.block-controls button {
+  background-color: #dfe4ea; /* Lighter button background */
+  color: #2c3e50;
+  border: 1px solid #ced4da; /* Softer border */
+  padding: 3px 6px;
+  font-size: 13px; /* Slightly larger */
+  line-height: 1.2; /* Improved line height */
+}
+.block-controls button:hover {
+  background-color: #ced4da;
+}
+/* Removed .cv-block > h4, .cv-block > p { clear: both; } as absolute positioning for controls makes it unnecessary */
+
+
+/* Template Selector Styling */
+.template-selector {
+  margin-bottom: 20px; /* Increased margin */
+  padding-bottom: 15px; /* Increased padding */
+  border-bottom: 1px solid #e0e0e0; /* Consistent border */
+  text-align: left; /* Align selector to left */
+}
+.template-selector label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+.template-selector button {
+  background-color: #ecf0f1;
+  color: #34495e;
+  margin-right: 8px; /* Adjusted margin */
+  border: 1px solid #bdc3c7; /* Add border for definition */
+}
+.template-selector button.active {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  border-color: #3498db; /* Match active background */
+}
+
+/* Download Button */
+.download-btn {
+    background-color: #2ecc71; /* Greener download button */
+    padding: 12px 20px; /* Larger padding */
+    font-size: 1.1em; /* Larger font */
+}
+.download-btn:hover {
+    background-color: #27ae60;
+}
+
+
+/* --- Modern Template --- */
+.cv-preview.modern {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333; /* Base text color */
+}
+.cv-preview.modern .cv-block h3 { /* Name */
+  color: #2c3e50;
+  font-size: 2em; /* Slightly larger */
+  margin-bottom: 8px; /* Adjusted margin */
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 6px; /* Adjusted padding */
+}
+.cv-preview.modern .cv-block h4 { /* Section titles */
+  color: #3498db;
+  font-size: 1.3em; /* Slightly larger */
+  margin-top: 18px; /* Adjusted margin */
+  margin-bottom: 10px; /* Adjusted margin */
+  font-weight: 600; /* Bolder */
+}
+.cv-preview.modern .cv-block p {
+    line-height: 1.6; /* Improved line height */
+    margin-bottom: 6px; /* Consistent paragraph margin */
+}
+.cv-preview.modern .cv-block a {
+    color: #3498db;
+    text-decoration: none;
+}
+.cv-preview.modern .cv-block a:hover {
+    text-decoration: underline;
+}
+
+
+/* --- Classic Template --- */
+.cv-preview.classic {
+  font-family: 'Georgia', Times, 'Times New Roman', serif;
+  color: #000;
+}
+.cv-preview.classic .cv-block h3 { /* Name */
+  color: #000000;
+  font-size: 2.2em; /* Slightly larger */
+  text-align: center;
+  margin-bottom: 12px; /* Adjusted margin */
+  border-bottom: 1px solid #000;
+  padding-bottom: 10px; /* Adjusted padding */
+}
+.cv-preview.classic .cv-block h4 { /* Section titles */
+  color: #1a1a1a; /* Darker */
+  font-size: 1.4em; /* Slightly larger */
+  margin-top: 22px; /* Adjusted margin */
+  margin-bottom: 12px; /* Adjusted margin */
+  text-transform: uppercase;
+  letter-spacing: 1px; /* Add letter spacing */
+  border-bottom: 1px solid #555; /* Subtle border under section titles */
+  padding-bottom: 5px;
+}
+.cv-preview.classic .cv-block p {
+    line-height: 1.7; /* Improved line height for serif */
+    margin-bottom: 8px; /* Consistent paragraph margin */
+}
+.cv-preview.classic .cv-block a {
+    color: #000; /* Match text color */
+    text-decoration: underline; /* Classic often underlines links */
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1100px) { /* Adjusted breakpoint */
   .cv-container {
-    display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 20px; /* Reduce gap when stacked */
   }
-  
-  .form-section,
   .preview-section {
-    flex: 1;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  input,
-  textarea {
+    position: static;
     width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    box-sizing: border-box;
+    margin-top: 20px;
+    max-height: none; /* Remove max-height */
+    overflow-y: visible; /* Reset overflow */
   }
-  
-  textarea {
-    height: 80px;
+  .cv-preview {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    min-height: unset;
+    padding: 20px; /* Standard padding for smaller views */
+    margin: 0; /* Remove auto margin */
   }
-  
-  .template-selector {
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 10px;
+  }
+  .form-section, .preview-section {
+    padding: 15px;
+  }
+  .App h1 {
+    font-size: 1.8em; /* Responsive font size */
     margin-bottom: 20px;
   }
-  
-  .template-selector button {
-    padding: 8px 16px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    cursor: pointer;
+  button {
+    padding: 10px 12px; /* Adjusted padding for mobile */
+    font-size: 0.95em; /* Adjusted font size */
   }
-  
-  .template-selector button.active {
-    background: #007bff;
-    color: white;
-    border-color: #007bff;
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  select {
+    font-size: 0.95em; /* Adjusted font size */
+    padding: 10px; /* Larger touch targets */
   }
-  
   .cv-preview {
-    border: 1px solid #ccc;
-    padding: 20px;
-    background: #fff;
-    width: 190mm;
-    min-height: 277mm;
+    padding: 15px; /* Reduce padding on very small screens */
   }
-  
-  /* Modern Template */
-  .cv-preview.modern {
-    font-family: Arial, sans-serif;
-    color: #333;
+  .block-controls {
+    top: 5px;
+    right: 5px;
+    padding: 3px;
   }
-  
-  .cv-preview.modern h3 {
-    margin: 0 0 10px;
-    font-size: 24px;
-    color: #007bff;
+  .block-controls button {
+    padding: 2px 4px;
+    font-size: 11px;
   }
-  
-  .cv-preview.modern h4 {
-    margin: 10px 0 5px;
-    font-size: 18px;
-    border-bottom: 2px solid #007bff;
-    display: inline-block;
-  }
-  
-  .cv-preview.modern p {
-    margin: 0 0 10px;
-    line-height: 1.5;
-  }
-  
-  /* Classic Template */
-  .cv-preview.classic {
-    font-family: "Times New Roman", serif;
-    color: #000;
-    border: 2px solid #000;
-  }
-  
-  .cv-preview.classic h3 {
-    margin: 0 0 10px;
-    font-size: 26px;
-    text-align: center;
-    text-decoration: underline;
-  }
-  
-  .cv-preview.classic h4 {
-    margin: 10px 0 5px;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .cv-preview.classic p {
-    margin: 0 0 10px;
-    line-height: 1.6;
-  }
-  
-  .download-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .download-btn:hover {
-    background: #218838;
-  }
+}
+
+@media (max-width: 480px) { /* Extra small screens */
+    .App h1 {
+        font-size: 1.5em;
+    }
+    .form-block {
+        padding: 10px;
+    }
+    .add-block-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .add-block-section select, .add-block-section button {
+        width: 100%;
+        margin-right: 0; /* Reset margin for stacked layout */
+    }
+}
